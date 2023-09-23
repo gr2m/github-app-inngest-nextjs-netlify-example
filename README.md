@@ -24,6 +24,8 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+Test if the API works at [http://localhost:3000/api/ping](http://localhost:3000/api/ping). Test if the local Inngest server works at [http://localhost:3000/api/hello](http://localhost:3000/api/hello), then open [http://localhost:8288/stream](http://localhost:8288/stream) to see the Inngest event stream.
+
 ## Deploy
 
 You will need accounts at [Inngest](https://www.inngest.com/) and [Netlify](https://www.netlify.com/).
