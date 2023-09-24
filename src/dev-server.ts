@@ -1,5 +1,5 @@
-// This file is a replacement of the `next dev` command. The four lines that mostly
-// replicate next's dev command are:
+// This file is a replacement of the `next dev` command. The four lines that
+// mostly replicate next's dev command are:
 //
 //     const nextApp = next({ dev: true, hostname, port });
 //     const handle = nextApp.getRequestHandler();
@@ -7,10 +7,8 @@
 //     await nextApp.prepare();
 //     createServer(handle).listen(port);
 //
-// Everything is custom code to
-//
-// 1. Setup webhook relay and inject webhook requests into the GitHub App function
-// 2. Record webhook requests and responses to disk
+// Everything else is custom code to setup webhook relay and inject webhook
+// requests into the GitHub App function.
 
 import { createServer } from "node:http";
 

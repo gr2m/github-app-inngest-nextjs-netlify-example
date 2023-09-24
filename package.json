@@ -4,8 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "dev-relay": "NODE_NO_WARNINGS=1 node --env-file .env.local --require ts-node/register --loader=ts-node/esm --experimental-specifier-resolution=node src/dev-server.ts | pino-pretty --singleLine",
+    "dev": "NODE_NO_WARNINGS=1 node --env-file .env.local --require ts-node/register --loader=ts-node/esm --experimental-specifier-resolution=node src/dev-server.ts | pino-pretty --singleLine",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
