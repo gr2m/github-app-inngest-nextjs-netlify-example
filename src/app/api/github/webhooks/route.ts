@@ -66,9 +66,7 @@ export async function POST(request: NextRequest) {
   };
 
   // @ts-expect-error - webhook is not typed correctly but that's ok
-  // await app.webhooks.verifyAndReceive(webhook);
-
-  console.log({ body });
+  await app.webhooks.verifyAndReceive(webhook);
 
   return NextResponse.json({ ok: true });
 }
