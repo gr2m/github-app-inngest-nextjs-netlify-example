@@ -66,6 +66,10 @@ export async function POST(request: NextRequest) {
   };
 
   const { id, name, signature } = webhook;
+  logger.info(
+    { headers: Object.fromEntries(headersList.entries()) },
+    "headers"
+  );
   logger.info({ id, name, signature }, "received webhook");
 
   try {
