@@ -65,8 +65,18 @@ export async function POST(request: NextRequest) {
     payload: body,
   };
 
-  // @ts-expect-error - webhook is not typed correctly but that's ok
-  await app.webhooks.verifyAndReceive(webhook);
+  const { id, name, signature } = webhook;
+  logger.info({ id, name, signature }, "received webhook");
 
-  return NextResponse.json({ ok: true });
+  try {
+    // @ts-expect-error - webhook is not typed correctly but that's ok
+    await app.webhooks.verifyAndReceive(webhook);
+
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    return NextResponse.json({
+      // @ts-expect-error
+      error: error.message,
+    });
+  }
 }
