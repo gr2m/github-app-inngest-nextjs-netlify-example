@@ -2,5 +2,5 @@ import { Inngest } from "inngest";
 
 // Create a client to send and receive events
 export const inngest = new Inngest({
-  name: "Next.js + Netlify Example",
+  name: "gr2m/github-app-inngest-nextjs-netlify-example",
 });

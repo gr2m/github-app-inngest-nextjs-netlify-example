@@ -19,6 +19,7 @@ import pino from "pino";
 import { cleanEnv, str, num, host } from "envalid";
 
 import githubApp from "./github-app";
+import { inngest } from "./inngest/client";
 
 const env = cleanEnv(process.env, {
   NODE_ENV: str({
@@ -79,6 +80,7 @@ async function run() {
 
   await githubApp(app, {
     logger: logger.child({ name: "app" }),
+    inngest,
   });
 
   const [owner, repo] = env.TEST_REPOSITORY.split("/");

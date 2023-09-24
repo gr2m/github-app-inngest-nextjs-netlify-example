@@ -1,8 +1,10 @@
 import { App } from "octokit";
 import type { Logger } from "pino";
+import type { Inngest } from "inngest";
 
 type Options = {
   logger: Logger;
+  inngest: Inngest;
 };
 
 /**
@@ -11,7 +13,10 @@ type Options = {
  *
  * The `app` is an instance of `@octokit/app` and logger is an object with `debug`, `info`, `warn` and `error` methods.
  */
-export default async function githubApp(app: App, { logger }: Options) {
+export default async function githubApp(
+  app: App,
+  { logger, inngest }: Options
+) {
   app.webhooks.onAny(async (event) => {
     let eventRepositoryName = "N/A";
     let eventAction = "N/A";
@@ -34,23 +39,21 @@ export default async function githubApp(app: App, { logger }: Options) {
     logger.info(data, "Event received");
   });
 
-  app.webhooks.on("issues.opened", async ({ octokit, payload }) => {
-    const { data: comment } = await octokit.request(
-      "POST /repos/{owner}/{repo}/issues/{issue_number}/comments",
-      {
-        owner: payload.repository.owner.login,
-        repo: payload.repository.name,
-        issue_number: payload.issue.number,
-        body: "Hello from the GitHub App!",
-      }
-    );
+  app.webhooks.on("issues.opened", async ({ payload }) => {
+    const data = {
+      owner: payload.repository.owner.login,
+      repo: payload.repository.name,
+      issue_number: payload.issue.number,
+      installationId: payload.installation?.id,
+    };
 
-    logger.info(
-      {
-        id: comment.id,
-        url: comment.html_url,
-      },
-      "Comment created"
-    );
+    await inngest.send({
+      // The event name
+      name: "app/issue.created",
+      // The event's data
+      data,
+    });
+
+    logger.info(data, '"app/issue.created" inngest event sent');
   });
 }
