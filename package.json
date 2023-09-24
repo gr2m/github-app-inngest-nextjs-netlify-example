@@ -2,7 +2,6 @@
   "name": "github-app-inngest-nextjs-netlify-example",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "NODE_NO_WARNINGS=1 node --env-file .env.local --require ts-node/register --loader=ts-node/esm --experimental-specifier-resolution=node src/dev-server.ts | pino-pretty --singleLine",
     "build": "next build",
