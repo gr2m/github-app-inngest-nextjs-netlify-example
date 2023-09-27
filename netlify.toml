@@ -1,6 +1,2 @@
 [[plugins]]
 package = "netlify-plugin-inngest"
-
-  [plugins.inputs]
-    host = "https://gr2m-inngest-nextjs.netlify.app:443"
-    path = "/api/inngest"
