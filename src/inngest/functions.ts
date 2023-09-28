@@ -6,7 +6,7 @@ export const helloWorld = inngest.createFunction(
   { event: "test/hello.world" },
   async ({ event, step }) => {
     await step.sleep("1s");
-    return { event, body: "Hello, World!" };
+    return { event, body: "Hello there!" };
   }
 );
 
