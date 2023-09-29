@@ -2,11 +2,20 @@ import { inngest } from "./client";
 import app from "../lib/octokit-app-singleton";
 
 export const helloWorld = inngest.createFunction(
-  { name: "Hello World" },
+  { name: "Hello there!" },
   { event: "test/hello.world" },
   async ({ event, step }) => {
     await step.sleep("1s");
     return { event, body: "Hello there!" };
+  }
+);
+
+export const helloAgain = inngest.createFunction(
+  { name: "Hello again!" },
+  { event: "test/hello.again" },
+  async ({ event, step }) => {
+    await step.sleep("1s");
+    return { event, body: "Hello again!" };
   }
 );
 
