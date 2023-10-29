@@ -18,7 +18,7 @@
     "envalid": "^8.0.0",
     "eslint": "8.50.0",
     "eslint-config-next": "13.5.2",
-    "inngest": "2.7.0",
+    "inngest": "3.4.1",
     "next": "13.4.19",
     "octokit": "^3.1.0",
     "pino": "^8.15.1",
@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "github-app-webhook-relay": "^1.1.0",
-    "inngest-cli": "^0.16.7",
+    "inngest-cli": "^0.19.0",
     "netlify-plugin-inngest": "^1.0.0",
     "pino-pretty": "^10.2.0",
     "ts-node": "^10.9.1"
