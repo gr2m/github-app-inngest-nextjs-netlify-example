@@ -1,30 +1,32 @@
+import { slugify } from "inngest";
+
 import { inngest } from "./client";
 import app from "../lib/octokit-app-singleton";
 
 export const helloWorld = inngest.createFunction(
-  { name: "Hello there!" },
+  { id: slugify("Hello there!") },
   { event: "test/hello.world" },
   async ({ event, step }) => {
-    await step.sleep("1s");
+    await step.sleep("wait-a-second", "1s");
     return { event, body: "Hello there!" };
   }
 );
 
 export const helloAgain = inngest.createFunction(
-  { name: "Hello again!" },
+  { id: slugify("Hello again!") },
   { event: "test/hello.again" },
   async ({ event, step }) => {
-    await step.sleep("1s");
+    await step.sleep("wait-a-second", "1s");
     return { event, body: "Hello again!" };
   }
 );
 
 export const createComments = inngest.createFunction(
-  { name: "Issue comments" },
+  { id: slugify("Issue comments") },
   { event: "app/issue.created" },
   async ({ event, step }) => {
     // create first comment
-    await step.run("Create first comment", async () => {
+    await step.run(slugify("Create first comment"), async () => {
       const octokit = await app.getInstallationOctokit(
         event.data.installationId
       );
@@ -42,10 +44,10 @@ export const createComments = inngest.createFunction(
     });
 
     // wait 1 minute
-    await step.sleep("1m");
+    await step.sleep("wait-a-minute", "1m");
 
     // create second comment
-    await step.run("Create second comment", async () => {
+    await step.run(slugify("Create second comment"), async () => {
       const octokit = await app.getInstallationOctokit(
         event.data.installationId
       );

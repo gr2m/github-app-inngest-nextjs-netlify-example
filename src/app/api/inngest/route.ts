@@ -7,8 +7,7 @@ import {
 } from "../../../inngest/functions";
 
 // create serve handler
-export const { GET, POST, PUT } = serve(inngest, [
-  helloWorld,
-  helloAgain,
-  createComments,
-]);
+export const { GET, POST, PUT } = serve({
+  client: inngest,
+  functions: [helloWorld, helloAgain, createComments],
+});
